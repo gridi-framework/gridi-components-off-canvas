@@ -30,7 +30,7 @@
             @include include-off-canvas-bottom-style();
         }
 
-        &.off-canvas-open { //off-canvas-open-left
+        &.off-canvas-open {
             @include include-off-canvas-open-style();
         }
     }
