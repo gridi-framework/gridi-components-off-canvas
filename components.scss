@@ -12,7 +12,7 @@
         @include include-off-canvas-style();
         @include include-off-canvas-left-style();
         @include include-off-canvas-horizontal-sizes();
-        @include include-off-canvas-horizontal-transition-style();
+        @include include-off-canvas-transition-style();
 
         &.off-canvas-right {
             @include include-off-canvas-right-style();
@@ -20,7 +20,6 @@
 
         &.off-canvas-top, &.off-canvas-bottom {
             @include include-off-canvas-vertical-sizes();
-            @include include-off-canvas-vertical-transition-style();
         }
 
         &.off-canvas-top {

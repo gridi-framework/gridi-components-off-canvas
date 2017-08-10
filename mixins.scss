@@ -15,6 +15,18 @@
     @include transform('translate(0, 0)');
 }
 
+@mixin include-off-canvas-transition-style($settings: ()) {
+    $settings: map-merge((
+        duration: $gridi-components-off-canvas-open-duration,
+        timing-function: $gridi-components-off-canvas-open-timing-function,
+        delay: $gridi-components-off-canvas-open-delay
+    ), $settings);
+    @include transition((
+    'transform #{map-get($settings, duration)} #{map-get($settings, timing-function)} #{map-get($settings, delay)}': (
+        use-browser-prefix: true
+    )));
+}
+
 //Horizontal off canvas
 @mixin include-off-canvas-horizontal-sizes($settings: ()) {
     $settings: map-merge((
@@ -36,18 +48,6 @@
             }
         }
     }
-}
-
-@mixin include-off-canvas-horizontal-transition-style($settings: ()) {
-    $settings: map-merge((
-        duration: $gridi-components-off-canvas-horizontal-open-duration,
-        timing-function: $gridi-components-off-canvas-horizontal-open-timing-function,
-        delay: $gridi-components-off-canvas-horizontal-open-delay
-    ), $settings);
-    @include transition((
-    'transform #{map-get($settings, duration)} #{map-get($settings, timing-function)} #{map-get($settings, delay)}': (
-        use-browser-prefix: true
-    )));
 }
 
 @mixin include-off-canvas-left-style($settings: ()) {
@@ -123,18 +123,6 @@
             }
         }
     }
-}
-
-@mixin include-off-canvas-vertical-transition-style($settings: ()) {
-    $settings: map-merge((
-        duration: $gridi-components-off-canvas-vertical-open-duration,
-        timing-function: $gridi-components-off-canvas-vertical-open-timing-function,
-        delay: $gridi-components-off-canvas-vertical-open-delay
-    ), $settings);
-    @include transition((
-    'transform #{map-get($settings, duration)} #{map-get($settings, timing-function)} #{map-get($settings, delay)}': (
-        use-browser-prefix: true
-    )));
 }
 
 @mixin include-off-canvas-top-style($settings: ()) {
