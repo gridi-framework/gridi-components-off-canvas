@@ -5,7 +5,6 @@
 
     .off-canvas,
     .off-canvas-content {
-        @include include-off-canvas-horizontal-transition-style();
         @include backface-visibility(hidden);
     }
 
@@ -13,6 +12,7 @@
         @include include-off-canvas-style();
         @include include-off-canvas-left-style();
         @include include-off-canvas-horizontal-sizes();
+        @include include-off-canvas-horizontal-transition-style();
 
         &.off-canvas-right {
             @include include-off-canvas-right-style();
