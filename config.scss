@@ -4,6 +4,17 @@ $gridi-components-off-canvas-background: $document-background-color !default;
 $gridi-components-off-canvas-open-duration: 0.4s !default;
 $gridi-components-off-canvas-open-timing-function: ease !default;
 $gridi-components-off-canvas-open-delay: null !default;
+//Defined off canvas transition for each screens.
+$gridi-components-off-canvas-open-transition-for-screens: null !default;
+/*
+$gridi-components-off-canvas-open-transition-for-screens: (
+    s2: (
+        duration: 0.4s,
+        timing-function: ease,
+        delay: null
+    )
+) !default;
+*/
 
 //Horizontal off canvas
 $gridi-components-off-canvas-horizontal-width: 100% !default;

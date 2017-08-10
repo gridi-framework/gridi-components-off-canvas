@@ -20,12 +20,29 @@
     $settings: map-merge((
         duration: $gridi-components-off-canvas-open-duration,
         timing-function: $gridi-components-off-canvas-open-timing-function,
-        delay: $gridi-components-off-canvas-open-delay
+        delay: $gridi-components-off-canvas-open-delay,
+        transition-for-screens: $gridi-components-off-canvas-open-transition-for-screens
     ), $settings);
     @include transition((
     'transform #{map-get($settings, duration)} #{map-get($settings, timing-function)} #{map-get($settings, delay)}': (
         use-browser-prefix: true
     )));
+
+    $transition-for-screens: map-get($settings, transition-for-screens);
+
+    @if is-map($transition-for-screens) {
+        @each $screen-prefix, $sizes in get-screens-map() {
+            @if map-has-key($transition-for-screens, $screen-prefix) {
+                @media(min-width: get-screen-size($screen-prefix, min)) {
+                    $transition-settings: map-get($transition-for-screens, $screen-prefix);
+                    @include transition((
+                    'transform #{map-get($transition-settings, duration)} #{map-get($transition-settings, timing-function)} #{map-get($transition-settings, delay)}': (
+                        use-browser-prefix: true
+                    )));
+                }
+            }
+        }
+    }
 }
 
 //Horizontal off canvas
