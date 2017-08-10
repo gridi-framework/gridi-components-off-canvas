@@ -1,0 +1,38 @@
+@if $gridi-components-off-canvas-generate-classes {
+    .off-canvas-wrapper {
+        @include include-off-canvas-wrapper-style(); 
+    }
+
+    .off-canvas,
+    .off-canvas-content {
+        @include include-off-canvas-horizontal-transition-style();
+        @include backface-visibility(hidden);
+    }
+
+    .off-canvas {
+        @include include-off-canvas-style();
+        @include include-off-canvas-left-style();
+        @include include-off-canvas-horizontal-sizes();
+
+        &.off-canvas-right {
+            @include include-off-canvas-right-style();
+        }
+
+        &.off-canvas-top, &.off-canvas-bottom {
+            @include include-off-canvas-vertical-sizes();
+            @include include-off-canvas-vertical-transition-style();
+        }
+
+        &.off-canvas-top {
+            @include include-off-canvas-top-style();
+        }
+
+        &.off-canvas-bottom {
+            @include include-off-canvas-bottom-style();
+        }
+
+        &.off-canvas-open { //off-canvas-open-left
+            @include include-off-canvas-open-style();
+        }
+    }
+}

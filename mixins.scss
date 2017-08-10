@@ -1,0 +1,190 @@
+@mixin include-off-canvas-wrapper-style() {
+    position: relative;
+    overflow: hidden;
+}
+
+@mixin include-off-canvas-style($settings: ()) {
+    $settings: map-merge((z-index: $gridi-components-off-canvas-z-index), $settings);
+    position: fixed;
+    @if map-has-key($settings, z-index) {
+        z-index: map-get($settings, z-index);
+    }
+}
+
+@mixin include-off-canvas-open-style() {
+    @include transform('translate(0, 0)');
+}
+
+//Horizontal off canvas
+@mixin include-off-canvas-horizontal-sizes($settings: ()) {
+    $settings: map-merge((
+        width: $gridi-components-off-canvas-horizontal-width,
+        width-for-screens: $gridi-components-off-canvas-horizontal-width-for-screens
+    ), $settings);
+
+    $width-for-screens: map-get($settings, width-for-screens);
+
+    width: map-get($settings, width);
+    max-width: 100%;
+    height: 100%;
+    @if is-map($width-for-screens) {
+        @each $screen-prefix, $sizes in get-screens-map() {
+            @if map-has-key($width-for-screens, $screen-prefix) {
+                @media(min-width: get-screen-size($screen-prefix, min)) {
+                    width: map-get($width-for-screens, $screen-prefix);
+                }
+            }
+        }
+    }
+}
+
+@mixin include-off-canvas-horizontal-transition-style($settings: ()) {
+    $settings: map-merge((
+        duration: $gridi-components-off-canvas-horizontal-open-duration,
+        timing-function: $gridi-components-off-canvas-horizontal-open-timing-function,
+        delay: $gridi-components-off-canvas-horizontal-open-delay
+    ), $settings);
+    @include transition((
+    'transform #{map-get($settings, duration)} #{map-get($settings, timing-function)} #{map-get($settings, delay)}': (
+        use-browser-prefix: true
+    )));
+}
+
+@mixin include-off-canvas-left-style($settings: ()) {
+    $settings: map-merge((
+        top: 0,
+        left: 0,
+        width: $gridi-components-off-canvas-horizontal-width,
+        width-for-screens: $gridi-components-off-canvas-horizontal-width-for-screens
+    ), $settings);
+
+    $width-for-screens: map-get($settings, width-for-screens);
+    
+    top: map-get($settings, top);
+    bottom: auto;
+    left: map-get($settings, left);
+    right: auto;
+    @include transform(translateX(-(map-get($settings, width))));
+    @if is-map($width-for-screens) {
+        @each $screen-prefix, $sizes in get-screens-map() {
+            @if map-has-key($width-for-screens, $screen-prefix) {
+                @media(min-width: get-screen-size($screen-prefix, min)) {
+                    @include transform(translateX(-(map-get($width-for-screens, $screen-prefix))));
+                }
+            }
+        }
+    }
+}
+
+@mixin include-off-canvas-right-style($settings: ()) {
+    $settings: map-merge((
+        top: 0,
+        right: 0,
+        width: $gridi-components-off-canvas-horizontal-width,
+        width-for-screens: $gridi-components-off-canvas-horizontal-width-for-screens
+    ), $settings);
+
+    $width-for-screens: map-get($settings, width-for-screens);
+    
+    top: map-get($settings, top);
+    bottom: auto;
+    right: map-get($settings, right);
+    left: auto;
+    @include transform(translateX(map-get($settings, width)));
+    @if is-map($width-for-screens) {
+        @each $screen-prefix, $sizes in get-screens-map() {
+            @if map-has-key($width-for-screens, $screen-prefix) {
+                @media(min-width: get-screen-size($screen-prefix, min)) {
+                    @include transform(translateX(map-get($width-for-screens, $screen-prefix)));
+                }
+            }
+        }
+    }
+}
+
+//Vertical off canvas
+@mixin include-off-canvas-vertical-sizes($settings: ()) {
+    $settings: map-merge((
+        height: $gridi-components-off-canvas-vertical-height,
+        height-for-screens: $gridi-components-off-canvas-vertical-height-for-screens
+    ), $settings);
+
+    $height-for-screens: map-get($settings, height-for-screens);
+
+    width: 100%;
+    height: map-get($settings, height);
+    max-height: 100%;
+    @if is-map($height-for-screens) {
+        @each $screen-prefix, $sizes in get-screens-map() {
+            @if map-has-key($height-for-screens, $screen-prefix) {
+                @media(min-width: get-screen-size($screen-prefix, min)) {
+                    height: map-get($height-for-screens, $screen-prefix);
+                }
+            }
+        }
+    }
+}
+
+@mixin include-off-canvas-vertical-transition-style($settings: ()) {
+    $settings: map-merge((
+        duration: $gridi-components-off-canvas-vertical-open-duration,
+        timing-function: $gridi-components-off-canvas-vertical-open-timing-function,
+        delay: $gridi-components-off-canvas-vertical-open-delay
+    ), $settings);
+    @include transition((
+    'transform #{map-get($settings, duration)} #{map-get($settings, timing-function)} #{map-get($settings, delay)}': (
+        use-browser-prefix: true
+    )));
+}
+
+@mixin include-off-canvas-top-style($settings: ()) {
+    $settings: map-merge((
+        top: 0,
+        left: 0,
+        height: $gridi-components-off-canvas-vertical-height,
+        height-for-screens: $gridi-components-off-canvas-vertical-height-for-screens
+    ), $settings);
+
+    $height-for-screens: map-get($settings, height-for-screens);
+    
+    top: map-get($settings, top);
+    bottom: auto;
+    left: map-get($settings, left);
+    right: auto;
+    @include transform(translateY(-(map-get($settings, height))));
+    @if is-map($height-for-screens) {
+        @each $screen-prefix, $sizes in get-screens-map() {
+            @if map-has-key($height-for-screens, $screen-prefix) {
+                @media(min-width: get-screen-size($screen-prefix, min)) {
+                    @include transform(translateY(-(map-get($height-for-screens, $screen-prefix))));
+                }
+            }
+        }
+    }
+}
+
+@mixin include-off-canvas-bottom-style($settings: ()) {
+    $settings: map-merge((
+        bottom: 0,
+        left: 0,
+        height: $gridi-components-off-canvas-vertical-height,
+        height-for-screens: $gridi-components-off-canvas-vertical-height-for-screens
+    ), $settings);
+
+    $height-for-screens: map-get($settings, height-for-screens);
+    
+    top: auto;
+    bottom: map-get($settings, bottom);
+    left: map-get($settings, left);
+    right: auto;
+    @include transform(translateY(map-get($settings, height)));
+    @if is-map($height-for-screens) {
+        @each $screen-prefix, $sizes in get-screens-map() {
+            @if map-has-key($height-for-screens, $screen-prefix) {
+                @media(min-width: get-screen-size($screen-prefix, min)) {
+                    @include transform(translateY(map-get($height-for-screens, $screen-prefix)));
+                }
+            }
+        }
+    }
+}

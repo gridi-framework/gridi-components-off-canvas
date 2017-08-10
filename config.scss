@@ -1,0 +1,23 @@
+$gridi-components-off-canvas-generate-classes: true !default;
+$gridi-components-off-canvas-z-index: 50 !default;
+$gridi-components-off-canvas-background: $document-background-color !default;
+
+//Horizontal off canvas
+$gridi-components-off-canvas-horizontal-width: 100% !default;
+//Defined off canvas width for each screens.
+$gridi-components-off-canvas-horizontal-width-for-screens: (
+    s2: 350px
+) !default;
+$gridi-components-off-canvas-horizontal-open-duration: 0.4s !default;
+$gridi-components-off-canvas-horizontal-open-timing-function: ease !default;
+$gridi-components-off-canvas-horizontal-open-delay: null !default;
+
+//Vertical off canvas
+$gridi-components-off-canvas-vertical-height: 100% !default;
+//Defined off canvas width for each screens.
+$gridi-components-off-canvas-vertical-height-for-screens: (
+    s2: 350px
+) !default;
+$gridi-components-off-canvas-vertical-open-duration: 0.4s !default;
+$gridi-components-off-canvas-vertical-open-timing-function: ease !default;
+$gridi-components-off-canvas-vertical-open-delay: null !default;
