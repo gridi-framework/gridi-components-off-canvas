@@ -5,6 +5,7 @@
 
 @mixin include-off-canvas-style($settings: ()) {
     $settings: map-merge((z-index: $gridi-components-off-canvas-z-index), $settings);
+    visibility: hidden;
     position: fixed;
     overflow: auto;
     @if map-has-key($settings, z-index) {
@@ -13,6 +14,7 @@
 }
 
 @mixin include-off-canvas-open-style() {
+    visibility: visible;
     @include transform('translate(0, 0)');
 }
 
@@ -21,11 +23,13 @@
         duration: $gridi-components-off-canvas-open-duration,
         timing-function: $gridi-components-off-canvas-open-timing-function,
         delay: $gridi-components-off-canvas-open-delay,
-        transition-for-screens: $gridi-components-off-canvas-open-transition-for-screens
+        transition-for-screens: $gridi-components-off-canvas-open-transition-for-screens,
+        transition-property: transform,
+        transition-property-use-browser-prefix: true
     ), $settings);
     @include transition((
-    'transform #{map-get($settings, duration)} #{map-get($settings, timing-function)} #{map-get($settings, delay)}': (
-        use-browser-prefix: true
+    '#{map-get($settings, transition-property)} #{map-get($settings, duration)} #{map-get($settings, timing-function)} #{map-get($settings, delay)}': (
+        use-browser-prefix: map-get($settings, transition-property-use-browser-prefix)
     )));
 
     $transition-for-screens: map-get($settings, transition-for-screens);
