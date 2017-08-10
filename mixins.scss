@@ -6,6 +6,7 @@
 @mixin include-off-canvas-style($settings: ()) {
     $settings: map-merge((z-index: $gridi-components-off-canvas-z-index), $settings);
     position: fixed;
+    overflow: auto;
     @if map-has-key($settings, z-index) {
         z-index: map-get($settings, z-index);
     }
